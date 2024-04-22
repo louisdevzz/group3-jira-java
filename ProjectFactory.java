@@ -6,9 +6,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductFactory<T> implements Data<T>{
+public class ProjectFactory<T> implements IDataFactory<T> {
     private Connection conn;
-    public ProductFactory(Connection conn){
+    public ProjectFactory(Connection conn){
         this.conn = conn;
     }
     @Override
@@ -22,8 +22,8 @@ public class ProductFactory<T> implements Data<T>{
             Statement stmt = conn.createStatement();
             String sql = "INSERT INTO(xxx) VALUES ";
         for(T p: list_objs){
-            Product t =  p instanceof Product ? ((Product) p) : null;
-            sql += STR."(\{t.getId()},\{t.getName()}),";
+            Project t =  p instanceof Project ? ((Project) p) : null;
+            sql += STR."(\{t.getId()},\{t.getTitle()}),";
         }
         stmt.execute(sql);
         } catch (SQLException e) {

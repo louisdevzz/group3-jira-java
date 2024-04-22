@@ -19,11 +19,11 @@ public class DAOFactory {
             System.out.println("VendorError: " + ex.getErrorCode());
         }
     }
-    public List<ProductFactory> createProduct(){
-        return new ProductFactory(conn).load();
+    public List<ProjectFactory> createProduct(){
+        return new ProjectFactory(conn).load();
     }
 
-    public void saveProduct(List<ProductFactory> list_product){
-        new ProductFactory(conn).save(list_product);
+    public void saveProduct(List<ProjectFactory> list_product){
+        new ProjectFactory(conn).save(list_product);
     }
 }
