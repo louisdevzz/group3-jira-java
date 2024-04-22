@@ -8,8 +8,7 @@ public class DAOFactory {
     private Connection conn;
     public DAOFactory(String mysql){
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/test?" +
-                            "user=minty&password=greatsqldb");
+            conn = DriverManager.getConnection(mysql);
 
             // Do something with the Connection
 
