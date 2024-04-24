@@ -9,21 +9,17 @@ public class DAOFactory {
     public DAOFactory(String mysql){
         try {
             conn = DriverManager.getConnection(mysql);
-
-            // Do something with the Connection
-
         } catch (SQLException ex) {
-            // handle any errors
             System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());
             System.out.println("VendorError: " + ex.getErrorCode());
         }
     }
-    public List<ProjectFactory> createProduct(){
-        return new ProjectFactory(conn).load();
+    public <T> void createProject(List<T> list_project){
+        new ProjectFactory(conn).save(list_project);
     }
 
-    public void saveProduct(List<ProjectFactory> list_product){
-        new ProjectFactory(conn).save(list_product);
+    public void saveProduct(List<ProjectFactory> list_project){
+        new ProjectFactory(conn).save(list_project);
     }
 }
