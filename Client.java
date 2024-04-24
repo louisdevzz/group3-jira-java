@@ -14,16 +14,18 @@ public class Client {
         Management management = new Management();
         while (true){
             System.out.println("\nMenu:");
-            System.out.println("1. Create Project");
-            System.out.println("2. Register");
-            System.out.println("3. Login");
-            System.out.println("4. Chat");
-            System.out.println("5. Show All Project");
-            System.out.println("6. Exit");
+            System.out.println("1. Register");
+            System.out.println("2. Login");
+            System.out.println("3. Create Project");
+            System.out.println("4. Create Task");
+            System.out.println("5. Show Task");
+            System.out.println("6. Show All Project");
+            System.out.println("7. Chat");
+            System.out.println("8. Exit");
             System.out.print("Enter your choice: ");
             String choice = scanner.nextLine();
             switch (choice){
-                case "1":
+                case "3":
                     if(isLogin){
                         System.out.println("Enter project details:");
                         System.out.print("Title: ");
@@ -64,8 +66,53 @@ public class Client {
                         System.out.println("Please login before create project!!");
                         break;
                     }
+                case "4":
+                    if(isLogin){
+                        System.out.println("Enter task details:");
 
-                case "2":
+                        System.out.print("Project ID: ");
+                        String pId = scanner.nextLine();
+
+                        System.out.print("Topic: ");
+                        String topic = scanner.nextLine();
+
+                        System.out.print("From Date: ");
+                        String fromDate = scanner.nextLine();
+
+                        System.out.print("To Date: ");
+                        String toDate = scanner.nextLine();
+
+                        System.out.print("Description: ");
+                        String description = scanner.nextLine();
+
+                        System.out.print("Assignment: ");
+                        String assignment = scanner.nextLine();
+
+                        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+                        String created_at_task = ft.format(new Date());
+
+                        System.out.print("Status: ");
+                        String in_status = scanner.nextLine();
+                        Task.STATUS status = null;
+                        if(Objects.equals(in_status, "todo")){
+                            status = Task.STATUS.TODO;
+                        }
+                        else if(Objects.equals(in_status, "completed")){
+                            status = Task.STATUS.COMPLETED;
+                        }else if(Objects.equals(in_status,"pending")){
+                            status = Task.STATUS.PENDING;
+                        }
+
+                        System.out.print("Comment: ");
+                        String comment = scanner.nextLine();
+
+                        System.out.print("Tags (...,...): ");
+                        String tags = scanner.nextLine();
+
+                        management.createTask(pId,topic,fromDate,toDate,description,assignment,created_at_task,status,comment,tags);
+                        break;
+                    }
+                case "1":
                     System.out.println("Enter information register!!!");
 
                     System.out.print("Username: ");
@@ -85,7 +132,7 @@ public class Client {
 
                     management.createUser(uid,fullName,username,password,created_at);
                     break;
-                case "3":
+                case "2":
                     if(isLogin){
                         System.out.println("You was login and you can access functions!");
                     }else{
@@ -108,9 +155,12 @@ public class Client {
                     }
                     break;
                 case "5":
-                    management.loadProject();
+                    management.loadTask();
                     break;
                 case "6":
+                    management.loadProject();
+                    break;
+                case "8":
                     System.out.println("Exiting...");
                     System.exit(0);
                 default:

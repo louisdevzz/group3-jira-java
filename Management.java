@@ -20,6 +20,17 @@ public class Management<T> {
         dao.createProject(projectList);
         System.out.println("Create project successful!!!");
     }
+
+    public void createTask(String pid, String topic, String from_date, String to_date, String description,
+                           String assignment, String create_at, Task.STATUS status, String comment, String tags){
+        List<T> taskList = new ArrayList<>();
+        Task task = new Task(pid,topic,from_date, to_date, description, assignment, create_at,  status, comment, tags);
+        taskList.add((T) task);
+        dao.createProject(taskList);
+        System.out.println("Create task successful!!!");
+    }
+
+
     @SuppressWarnings("unchecked")
     public void createUser(String uid,String full_name,String username,String password,String create_at){
         List<T> userList = new ArrayList<>();
@@ -33,6 +44,13 @@ public class Management<T> {
         List<Project> projects = dao.load("project");
         for(Project p: projects){
             System.out.println(p.toString());
+        }
+    }
+
+    public void loadTask(){
+        List<Task> tasks = dao.load("task");
+        for(Task t: tasks){
+            System.out.println(t.toString());
         }
     }
 
