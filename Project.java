@@ -1,39 +1,34 @@
 package group1;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 public class Project {
-    enum STATUS {DOING,COMPLETED}
-    private String id;
+    public enum STATUS {TODO,PENDING,COMPLETED}
     private String title;
     private String description;
-    private Date time_finish;
+    private String time_finish;
     private STATUS status;
     private String manager;
-    private Date create_at;
+    private String create_at_string;
     private String comment;
-    private String tags;
+    private ArrayList<String> tags;
     private String userId;
 
-    public Project(String id, String title, String description, Date time_finish, STATUS status, String manager, Date create_at, String comment, String tags, String userId) {
-        this.id = id;
+    public Project(String title, String description, String time_finish, STATUS status, String manager, String create_at_string, String comment, ArrayList<String> tags, String userId) {
         this.title = title;
         this.description = description;
         this.time_finish = time_finish;
         this.status = status;
         this.manager = manager;
-        this.create_at = create_at;
+        this.create_at_string = create_at_string;
         this.comment = comment;
         this.tags = tags;
         this.userId = userId;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getTitle() {
@@ -52,11 +47,21 @@ public class Project {
         this.description = description;
     }
 
-    public Date getTime_finish() {
-        return time_finish;
+    public String getTime_finish() {
+        String result = null;
+        try{
+            DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+            Date finish = format.parse(time_finish);
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            result = df.format(finish);
+        }catch (ParseException e){
+            System.out.println("Invalid date format. Please use yyyy-MM-dd.");
+        }
+        return result;
     }
 
-    public void setTime_finish(Date time_finish) {
+    public void setTime_finish(String time_finish) {
+
         this.time_finish = time_finish;
     }
 
@@ -76,12 +81,21 @@ public class Project {
         this.manager = manager;
     }
 
-    public Date getCreate_at() {
-        return create_at;
+    public String getCreate_at_string() {
+        String result = null;
+        try{
+            DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+            Date create_at = format.parse(create_at_string);
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            result = df.format(create_at);
+        }catch (ParseException e){
+            System.out.println("Invalid date format. Please use yyyy-MM-dd.");
+        }
+        return result;
     }
 
-    public void setCreate_at(Date create_at) {
-        this.create_at = create_at;
+    public void setCreate_at_string(String create_at_string) {
+        this.create_at_string = create_at_string;
     }
 
     public String getComment() {
@@ -92,11 +106,11 @@ public class Project {
         this.comment = comment;
     }
 
-    public String getTags() {
+    public ArrayList<String> getTags() {
         return tags;
     }
 
-    public void setTags(String tags) {
+    public void setTags(ArrayList<String> tags) {
         this.tags = tags;
     }
 
@@ -106,5 +120,20 @@ public class Project {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    @Override
+    public String toString() {
+        return "Project{" +
+                "title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", time_finish=" + time_finish +
+                ", status=" + status +
+                ", manager='" + manager + '\'' +
+                ", create_at=" + create_at_string +
+                ", comment='" + comment + '\'' +
+                ", tags=" + tags +
+                ", userId='" + userId + '\'' +
+                '}';
     }
 }
