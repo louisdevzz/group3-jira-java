@@ -2,8 +2,9 @@ package group1;
 
 
 import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.List;
+import java.util.Objects;
 
 public class Management<T> {
     private DAOFactory dao;
@@ -28,15 +29,29 @@ public class Management<T> {
         System.out.println("Create user successful!!!");
     }
 
-    public List<User> loadUser(){
-        List<User> list = dao.load("user");
-        return list;
-    }
-
     public void loadProject(){
         List<Project> projects = dao.load("project");
         for(Project p: projects){
             System.out.println(p.toString());
         }
+    }
+
+    public List<User> userList(){
+        List<User> user = dao.load("user");
+        return user;
+    }
+
+    public Boolean checkLogin(String username,String password){
+        List<User> list = dao.load("user");
+        Boolean isCheck = false;
+        for(User u: list){
+            if(Objects.equals(username, u.getUsername()) && Objects.equals(password, u.getPassword())){
+                isCheck = true;
+                System.out.println("Login successful!!");
+            }else{
+                System.out.println("Login failed!!\n Username and password can incorrect!!\n Please enter username and password again!!");
+            }
+        }
+        return isCheck;
     }
 }
