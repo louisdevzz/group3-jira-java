@@ -50,7 +50,7 @@ public class Project {
     public String getTime_finish() {
         String result = null;
         try{
-            DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+            DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
             Date finish = format.parse(time_finish);
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             result = df.format(finish);
