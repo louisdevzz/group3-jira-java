@@ -19,7 +19,7 @@ public class DAOFactory {
         new ProjectFactory(conn).save(list_project);
     }
 
-    public void saveProduct(List<ProjectFactory> list_project){
-        new ProjectFactory(conn).save(list_project);
+    public <T> List<T> load(String choose){
+        return new ProjectFactory(conn).load(choose);
     }
 }

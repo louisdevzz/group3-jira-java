@@ -16,10 +16,10 @@ public class Project {
     private String manager;
     private String create_at_string;
     private String comment;
-    private ArrayList<String> tags;
+    private String tags;
     private String userId;
 
-    public Project(String title, String description, String time_finish, STATUS status, String manager, String create_at_string, String comment, ArrayList<String> tags, String userId) {
+    public Project(String title, String description, String time_finish, STATUS status, String manager, String create_at_string, String comment, String tags, String userId) {
         this.title = title;
         this.description = description;
         this.time_finish = time_finish;
@@ -106,11 +106,11 @@ public class Project {
         this.comment = comment;
     }
 
-    public ArrayList<String> getTags() {
+    public String getTags() {
         return tags;
     }
 
-    public void setTags(ArrayList<String> tags) {
+    public void setTags(String tags) {
         this.tags = tags;
     }
 
