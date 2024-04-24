@@ -6,6 +6,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.StringTemplate.STR;
+
 public class ProductFactory<T> implements Data<T>{
     private Connection conn;
     public ProductFactory(Connection conn){
