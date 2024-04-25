@@ -148,9 +148,9 @@ public class Client {
                         for(User u: users){
                             if(Objects.equals(user,u.getUsername())){
                                 userid = u.getUid();
+                                break;
                             }
                         }
-
                         isLogin = management.checkLogin(user,pass);
                     }
                     break;

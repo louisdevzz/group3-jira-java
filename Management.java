@@ -66,8 +66,10 @@ public class Management<T> {
             if(Objects.equals(username, u.getUsername()) && Objects.equals(password, u.getPassword())){
                 isCheck = true;
                 System.out.println("Login successful!!");
+                break;
             }else{
                 System.out.println("Login failed!!\n Username and password can incorrect!!\n Please enter username and password again!!");
+                break;
             }
         }
         return isCheck;
