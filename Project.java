@@ -82,16 +82,7 @@ public class Project {
     }
 
     public String getCreate_at_string() {
-        String result = null;
-        try{
-            DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-            Date create_at = format.parse(create_at_string);
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-            result = df.format(create_at);
-        }catch (ParseException e){
-            System.out.println("Invalid date format. Please use yyyy-MM-dd.");
-        }
-        return result;
+        return create_at_string;
     }
 
     public void setCreate_at_string(String create_at_string) {

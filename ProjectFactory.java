@@ -57,6 +57,33 @@ public class ProjectFactory<T> implements IDataFactory<T>{
                     Project project = new Project(title,description,time_finish,status,manager,create_at,comment,tags,uid);
                     result.add((T) project);
                 }
+            } else if (Objects.equals(choose,"task")) {
+                rs = stmt.executeQuery("SELECT * FROM task");
+                while (rs.next()) {
+                    String pid = rs.getString(2);
+                    String topic = rs.getString(3);
+                    String from_date = rs.getString(4);
+                    String to_date = rs.getString(5);
+                    String description = rs.getString(6);
+                    String assignment = rs.getString(7);
+                    String create_at = rs.getString(8);
+                    String in_status = rs.getString(9);
+                    String comment = rs.getString(10);
+                    String tags = rs.getString(11);
+                    Task.STATUS status = null;
+                    if(Objects.equals(in_status, "todo")){
+                        status = Task.STATUS.TODO;
+                    }
+                    else if(Objects.equals(in_status, "completed")){
+                        status = Task.STATUS.COMPLETED;
+                    }else if(Objects.equals(in_status,"pending")){
+                        status = Task.STATUS.PENDING;
+                    }
+
+
+                    Task task = new Task(pid,topic,from_date,to_date,description,assignment,create_at,status,comment,tags);
+                    result.add((T) task);
+                }
             }
 
         }
@@ -76,11 +103,14 @@ public class ProjectFactory<T> implements IDataFactory<T>{
             for(T p: list_objs){
                 if(p instanceof Project){
                     Project t =  p instanceof Project ? ((Project) p) : null;
-                    sql+="INSERT INTO project (title,description,time_finish,status,manager,create_at,comment,tags,userId) VALUES ('"+t.getTitle()+"','"+t.getDescription()+"','"+t.getTime_finish()+"','"+t.getStatus()+"','"+t.getManager()+"','"+t.getCreate_at_string()+"','"+t.getComment()+"','web3','"+t.getUserId()+"')";
+                    sql+="INSERT INTO project (title,description,time_finish,status,manager,create_at,comment,tags,userId) VALUES ('"+t.getTitle()+"','"+t.getDescription()+"','"+t.getTime_finish()+"','"+t.getStatus()+"','"+t.getManager()+"','"+t.getCreate_at_string()+"','"+t.getComment()+"','"+t.getTags()+"','"+t.getUserId()+"')";
 
                 }else if(p instanceof User){
                     User u = p instanceof User ? ((User) p) : null;
                     sql+="INSERT INTO user (uid,fullname,username,password,create_at) VALUES ('"+u.getUid()+"','"+u.getFull_name()+"','"+u.getUsername()+"','"+u.getPassword()+"','"+u.getCreate_at()+"')";
+                } else if (p instanceof Task) {
+                    Task t = p instanceof Task ? ((Task) p) : null;
+                    sql+="INSERT INTO task (pid,topic,from_date,to_date,status,description,assignment,create_at,status,comment,tags) VALUES ('"+t.getPid()+"','"+t.getTopic()+"','"+t.getFrom_date()+"','"+t.getTo_date()+"','"+t.getDescription()+"','"+t.getAssignment()+"','"+t.getCreate_at()+"','"+t.getStatus()+"','"+t.getComment()+"','"+t.getTags()+"')";
                 }
             }
             stmt.execute(sql);
