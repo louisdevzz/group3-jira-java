@@ -16,76 +16,34 @@ public class ProjectFactory<T> implements IDataFactory<T>{
         this.conn = conn;
     }
     @Override
-    public List<T> load(String choose) {
+    public List<T> load() {
         ArrayList<T> result = new ArrayList<>();
         try {
             Statement stmt = conn.createStatement();
-            ResultSet rs = null;
-            if(Objects.equals(choose, "user")){
-                rs = stmt.executeQuery("SELECT * FROM user");
-                while (rs.next()) {
-                    String uid = rs.getString(2);
-                    String fullname = rs.getString(3);
-                    String username = rs.getString(4);
-                    String password = rs.getString(5);
-                    String create_at = rs.getString(6);
-                    User user = new User(uid,fullname,username,password,create_at);
-                    result.add((T) user);
+            ResultSet rs = stmt.executeQuery("SELECT * FROM project");
+            while (rs.next()) {
+                String title = rs.getString(2);
+                String description = rs.getString(3);
+                String time_finish = rs.getString(4);
+                String in_status = rs.getString(5);
+                Project.STATUS status = null;
+                if(Objects.equals(in_status, "todo")){
+                    status = Project.STATUS.TODO;
                 }
-            }else if(Objects.equals(choose,"project")){
-                rs = stmt.executeQuery("SELECT * FROM project");
-                while (rs.next()) {
-                    String title = rs.getString(2);
-                    String description = rs.getString(3);
-                    String time_finish = rs.getString(4);
-                    String in_status = rs.getString(5);
-                    Project.STATUS status = null;
-                    if(Objects.equals(in_status, "todo")){
-                        status = Project.STATUS.TODO;
-                    }
-                    else if(Objects.equals(in_status, "completed")){
-                        status = Project.STATUS.COMPLETED;
-                    }else if(Objects.equals(in_status,"pending")){
-                        status = Project.STATUS.PENDING;
-                    }
-                    String manager = rs.getString(6);
-                    String create_at = rs.getString(7);
-                    String comment = rs.getString(8);
-                    String tags = rs.getString(9);
-                    String uid = rs.getString(10);
-
-                    Project project = new Project(title,description,time_finish,status,manager,create_at,comment,tags,uid);
-                    result.add((T) project);
+                else if(Objects.equals(in_status, "completed")){
+                    status = Project.STATUS.COMPLETED;
+                }else if(Objects.equals(in_status,"pending")){
+                    status = Project.STATUS.PENDING;
                 }
-            } else if (Objects.equals(choose,"task")) {
-                rs = stmt.executeQuery("SELECT * FROM task");
-                while (rs.next()) {
-                    String pid = rs.getString(2);
-                    String topic = rs.getString(3);
-                    String from_date = rs.getString(4);
-                    String to_date = rs.getString(5);
-                    String description = rs.getString(6);
-                    String assignment = rs.getString(7);
-                    String create_at = rs.getString(8);
-                    String in_status = rs.getString(9);
-                    String comment = rs.getString(10);
-                    String tags = rs.getString(11);
-                    Task.STATUS status = null;
-                    if(Objects.equals(in_status, "todo")){
-                        status = Task.STATUS.TODO;
-                    }
-                    else if(Objects.equals(in_status, "completed")){
-                        status = Task.STATUS.COMPLETED;
-                    }else if(Objects.equals(in_status,"pending")){
-                        status = Task.STATUS.PENDING;
-                    }
+                String manager = rs.getString(6);
+                String create_at = rs.getString(7);
+                String comment = rs.getString(8);
+                String tags = rs.getString(9);
+                String uid = rs.getString(10);
 
-
-                    Task task = new Task(pid,topic,from_date,to_date,description,assignment,create_at,status,comment,tags);
-                    result.add((T) task);
-                }
+                Project project = new Project(title,description,time_finish,status,manager,create_at,comment,tags,uid);
+                result.add((T) project);
             }
-
         }
         catch (SQLException ex){
             // handle any errors
@@ -101,17 +59,8 @@ public class ProjectFactory<T> implements IDataFactory<T>{
             Statement stmt = conn.createStatement();
             String sql ="";
             for(T p: list_objs){
-                if(p instanceof Project){
-                    Project t =  p instanceof Project ? ((Project) p) : null;
-                    sql+="INSERT INTO project (title,description,time_finish,status,manager,create_at,comment,tags,userId) VALUES ('"+t.getTitle()+"','"+t.getDescription()+"','"+t.getTime_finish()+"','"+t.getStatus()+"','"+t.getManager()+"','"+t.getCreate_at_string()+"','"+t.getComment()+"','"+t.getTags()+"','"+t.getUserId()+"')";
-
-                }else if(p instanceof User){
-                    User u = p instanceof User ? ((User) p) : null;
-                    sql+="INSERT INTO user (uid,fullname,username,password,create_at) VALUES ('"+u.getUid()+"','"+u.getFull_name()+"','"+u.getUsername()+"','"+u.getPassword()+"','"+u.getCreate_at()+"')";
-                } else if (p instanceof Task) {
-                    Task t = p instanceof Task ? ((Task) p) : null;
-                    sql+="INSERT INTO task (pid,topic,from_date,to_date,status,description,assignment,create_at,status,comment,tags) VALUES ('"+t.getPid()+"','"+t.getTopic()+"','"+t.getFrom_date()+"','"+t.getTo_date()+"','"+t.getDescription()+"','"+t.getAssignment()+"','"+t.getCreate_at()+"','"+t.getStatus()+"','"+t.getComment()+"','"+t.getTags()+"')";
-                }
+                Project t =  p instanceof Project ? ((Project) p) : null;
+                sql+="INSERT INTO project (title,description,time_finish,status,manager,create_at,comment,tags,userId) VALUES ('"+t.getTitle()+"','"+t.getDescription()+"','"+t.getTime_finish()+"','"+t.getStatus()+"','"+t.getManager()+"','"+t.getCreate_at_string()+"','"+t.getComment()+"','"+t.getTags()+"','"+t.getUserId()+"')";
             }
             stmt.execute(sql);
         } catch (SQLException e) {

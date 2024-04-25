@@ -19,7 +19,24 @@ public class DAOFactory {
         new ProjectFactory(conn).save(list_project);
     }
 
-    public <T> List<T> load(String choose){
-        return new ProjectFactory(conn).load(choose);
+    public <T> List<T> loadProject(){
+        return new ProjectFactory(conn).load();
     }
+
+    public <T> void createUser(List<T> list_users){
+        new UserFactory(conn).save(list_users);
+    }
+
+    public <T> List<T> loadUser(){
+        return new UserFactory(conn).load();
+    }
+
+    public <T> void createTask(List<T> list_tasks){
+        new TaskFactory(conn).save(list_tasks);
+    }
+
+    public <T> List<T> loadTask(){
+        return new TaskFactory(conn).load();
+    }
+
 }
