@@ -1,11 +1,10 @@
 package group1;
 
-
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.List;
 
-public class Client {
-
+public class Client{
     @SuppressWarnings("unchecked")
     public static void main (String[] args){
         Boolean isLogin = false;
@@ -70,9 +69,6 @@ public class Client {
                     if(isLogin){
                         System.out.println("Enter task details:");
 
-                        System.out.print("Project ID: ");
-                        String pId = scanner.nextLine();
-
                         System.out.print("Topic: ");
                         String topic = scanner.nextLine();
 
@@ -109,7 +105,7 @@ public class Client {
                         System.out.print("Tags (...,...): ");
                         String tags = scanner.nextLine();
 
-                        management.createTask(pId,topic,fromDate,toDate,description,assignment,created_at_task,status,comment,tags);
+                        management.createTask("3",topic,fromDate,toDate,description,assignment,created_at_task,status,comment,tags);
                         break;
                     }
                 case "1":

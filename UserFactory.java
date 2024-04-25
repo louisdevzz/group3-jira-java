@@ -1,12 +1,13 @@
 package group1;
 
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+
 
 public class UserFactory<T> implements IDataFactory<T>{
     private Connection conn;

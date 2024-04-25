@@ -9,6 +9,7 @@ public class DAOFactory {
     public DAOFactory(String mysql){
         try {
             conn = DriverManager.getConnection(mysql);
+            System.out.println("connect success!!");
         } catch (SQLException ex) {
             System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());
