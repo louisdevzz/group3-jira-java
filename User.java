@@ -50,6 +50,14 @@ public class User {
         return result;
     }
 
+    public Boolean checkUser(String username){
+        return username.equals(getUsername());
+    }
+
+    public Boolean checkPass(String password){
+        return password.equals(getPassword());
+    }
+
     @Override
     public String toString() {
         return "User{" +
