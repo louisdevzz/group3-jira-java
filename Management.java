@@ -26,7 +26,7 @@ public class Management<T> {
         List<T> taskList = new ArrayList<>();
         Task task = new Task(pid,topic,from_date, to_date, description, assignment, create_at,  status, comment, tags);
         taskList.add((T) task);
-        dao.createProject(taskList);
+        dao.createTask(taskList);
         System.out.println("Create task successful!!!");
     }
 
@@ -36,31 +36,31 @@ public class Management<T> {
         List<T> userList = new ArrayList<>();
         User user = new User(uid,full_name,username,password,create_at);
         userList.add((T) user);
-        dao.createProject(userList);
+        dao.createUser(userList);
         System.out.println("Create user successful!!!");
     }
 
     public void loadProject(){
-        List<Project> projects = dao.load("project");
+        List<Project> projects = dao.loadProject();
         for(Project p: projects){
             System.out.println(p.toString());
         }
     }
 
     public void loadTask(){
-        List<Task> tasks = dao.load("task");
+        List<Task> tasks = dao.loadTask();
         for(Task t: tasks){
             System.out.println(t.toString());
         }
     }
 
     public List<User> userList(){
-        List<User> user = dao.load("user");
+        List<User> user = dao.loadUser();
         return user;
     }
 
     public Boolean checkLogin(String username,String password){
-        List<User> list = dao.load("user");
+        List<User> list = dao.loadUser();
         Boolean isCheck = false;
         for(User u: list){
             if(Objects.equals(username, u.getUsername()) && Objects.equals(password, u.getPassword())){
