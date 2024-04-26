@@ -1,5 +1,7 @@
 package group1;
 
+import com.formdev.flatlaf.FlatIntelliJLaf;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -92,30 +94,23 @@ public class LoginForm extends javax.swing.JFrame {
         for(User u: users){
             if(u.checkUser(user)&&u.checkPass(pass)){
                 System.out.println("login successful!!");
+                Dashboard db = new Dashboard();
+                db.setVisible(true);
+                this.setVisible(false);
                 break;
             }
         }
+
     }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        try{
+            javax.swing.UIManager.setLookAndFeel(new FlatIntelliJLaf());
+        }catch(Exception e){
+            e.printStackTrace();
         }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
