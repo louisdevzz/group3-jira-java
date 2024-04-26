@@ -9,7 +9,7 @@ import java.util.Objects;
 public class Management<T> {
     private DAOFactory dao;
     public Management(){
-        dao = new DAOFactory("jdbc:mysql://unl4gv0g6ppkcyik:zYDmomoVGeEOwKClk08E@beoydmpfmbnzpwcoxzu6-mysql.services.clever-cloud.com:3306/beoydmpfmbnzpwcoxzu6");
+        dao = new DAOFactory("jdbc:mysql://jira.czg8sceumunq.us-west-1.rds.amazonaws.com:3306/jira");
     }
     @SuppressWarnings("unchecked")
     public void createProject(String title, String description, String time_finish, Project.STATUS status,

@@ -9,9 +9,9 @@ public class DAOFactory{
     public DAOFactory(String mysql){
         Welcome wl = new Welcome();
         wl.setVisible(true);
-        wl.ProgressBar();
         try {
-            conn = DriverManager.getConnection(mysql);
+            wl.ProgressBar();
+            conn = DriverManager.getConnection(mysql,"louisdevzz","Louisdevzz1310");
             System.out.println("connect success!!");
             wl.setVisible(false);
         } catch (SQLException ex) {

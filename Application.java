@@ -95,8 +95,8 @@ public class Application extends javax.swing.JFrame {
             if(u.checkUser(user)&&u.checkPass(pass)){
                 System.out.println("login successful!!");
                 Notifications.getInstance().show(Notifications.Type.SUCCESS,"LOGIN SUCCESSFUL");
-                Dashboard db = new Dashboard();
-                db.setVisible(true);
+                CreateProject createProject = new CreateProject();
+                createProject.setVisible(true);
                 this.setVisible(false);
                 break;
             }
