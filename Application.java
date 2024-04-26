@@ -1,13 +1,13 @@
 package group1;
 
 import com.formdev.flatlaf.FlatIntelliJLaf;
+import raven.toast.Notifications;
 
 import java.util.List;
-import java.util.Objects;
 
-public class LoginForm extends javax.swing.JFrame {
+public class Application extends javax.swing.JFrame {
     Management management = new Management();
-    public LoginForm() {
+    public Application() {
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -94,6 +94,7 @@ public class LoginForm extends javax.swing.JFrame {
         for(User u: users){
             if(u.checkUser(user)&&u.checkPass(pass)){
                 System.out.println("login successful!!");
+                Notifications.getInstance().show(Notifications.Type.SUCCESS,"LOGIN SUCCESSFUL");
                 Dashboard db = new Dashboard();
                 db.setVisible(true);
                 this.setVisible(false);
@@ -114,9 +115,13 @@ public class LoginForm extends javax.swing.JFrame {
         }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LoginForm().setVisible(true);
+
+
             }
         });
+        Application loginForm = new Application();
+        loginForm.setVisible(true);
+
     }
 
     // Variables declaration - do not modify

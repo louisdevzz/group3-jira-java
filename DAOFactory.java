@@ -4,12 +4,16 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
 
-public class DAOFactory {
-    private Connection conn;
+public class DAOFactory{
+    public Connection conn;
     public DAOFactory(String mysql){
+        Welcome wl = new Welcome();
+        wl.setVisible(true);
+        wl.ProgressBar();
         try {
             conn = DriverManager.getConnection(mysql);
             System.out.println("connect success!!");
+            wl.setVisible(false);
         } catch (SQLException ex) {
             System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());
