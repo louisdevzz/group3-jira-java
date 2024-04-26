@@ -1,6 +1,8 @@
 package group1;
 
 import com.formdev.flatlaf.FlatIntelliJLaf;
+import raven.toast.Notifications;
+
 public class Dashboard extends javax.swing.JFrame {
 
     /**
@@ -9,6 +11,7 @@ public class Dashboard extends javax.swing.JFrame {
     public Dashboard() {
         initComponents();
         setLocationRelativeTo(null);
+        Notifications.getInstance().setJFrame(this);
     }
 
     /**
