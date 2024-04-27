@@ -447,6 +447,10 @@ public class Dashboard extends javax.swing.JFrame {
         createProject.setVisible(true);
     }
 
+    public void setManagement(Management management){
+        this.management = management;
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -499,5 +503,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel jfullname;
     private javax.swing.JLabel jfullname1;
+    private Management management;
     // End of variables declaration
 }

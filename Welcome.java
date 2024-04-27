@@ -131,5 +131,5 @@ public class Welcome extends javax.swing.JFrame {
     public javax.swing.JLabel jLabel3;
     public javax.swing.JLabel jpleasewait;
     public javax.swing.JProgressBar jprogress;
-    // End of variables declaration
+
 }

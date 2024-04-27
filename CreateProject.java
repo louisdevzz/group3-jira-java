@@ -2,15 +2,16 @@ package group1;
 
 import com.formdev.flatlaf.FlatIntelliJLaf;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Objects;
+
 /**
  *
  * @author louisdevzz
  */
 public class CreateProject extends javax.swing.JFrame {
 
-    /**
-     * Creates new form CreateProject
-     */
     public CreateProject() {
         initComponents();
         setLocationRelativeTo(null);
@@ -33,7 +34,7 @@ public class CreateProject extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         fdescription = new javax.swing.JTextArea();
         jLabel8 = new javax.swing.JLabel();
-        nameProject1 = new javax.swing.JTextField();
+        fdate_finish = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         fStatus = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
@@ -95,7 +96,7 @@ public class CreateProject extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
         jLabel8.setText("Time finish (dd/MM/yyyy)");
 
-        nameProject1.setFont(new java.awt.Font("Ubuntu", 0, 16)); // NOI18N
+        fdate_finish.setFont(new java.awt.Font("Ubuntu", 0, 16)); // NOI18N
 
         jLabel9.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
         jLabel9.setText("Status");
@@ -142,7 +143,7 @@ public class CreateProject extends javax.swing.JFrame {
                                                                         .addComponent(jLabel11))
                                                                 .addGap(0, 0, Short.MAX_VALUE))
                                                         .addComponent(jScrollPane1)
-                                                        .addComponent(nameProject1))
+                                                        .addComponent(fdate_finish))
                                                 .addGap(42, 42, 42))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -172,7 +173,7 @@ public class CreateProject extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(nameProject1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(fdate_finish, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -195,8 +196,22 @@ public class CreateProject extends javax.swing.JFrame {
     }// </editor-fold>
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {
+        Project.STATUS status = null;
+        String valueStatus = (String) fStatus.getSelectedItem();
+        if(Objects.equals(valueStatus, "TODO")){
+            status = Project.STATUS.TODO;
+        }
+        else if(Objects.equals(valueStatus, "COMPLETED")){
+            status = Project.STATUS.COMPLETED;
+        }else if(Objects.equals(valueStatus,"PENDING")){
+            status = Project.STATUS.PENDING;
+        }
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String createdAt = df.format(new Date());
+        management.createProject(nameProject.getText(),fdescription.getText(),fdate_finish.getText(),status,fManager.getText(),createdAt,"",ftags.getText(),uid);
         Dashboard dashboard = new Dashboard();
         dashboard.setVisible(true);
+        dashboard.setManagement(management);
         this.setVisible(false);
     }
 
@@ -212,11 +227,16 @@ public class CreateProject extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CreateProject().setVisible(true);
-            }
-        });
+        CreateProject createProject = new CreateProject();
+        createProject.setVisible(true);
+    }
+
+    public void setUid(String uid){
+        this.uid = uid;
+    }
+
+    public void setManagement(Management management){
+        this.management = management;
     }
 
     // Variables declaration - do not modify
@@ -239,6 +259,8 @@ public class CreateProject extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nameProject;
-    private javax.swing.JTextField nameProject1;
+    private javax.swing.JTextField fdate_finish;
+    private String uid;
+    private Management management;
     // End of variables declaration
 }

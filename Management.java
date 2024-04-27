@@ -47,6 +47,11 @@ public class Management<T> {
         }
     }
 
+    public List<Project> loadProjectByUID(String uid){
+        List<Project> projects = dao.loadProjectByUID(uid);
+        return projects;
+    }
+
     public void loadTask(){
         List<Task> tasks = dao.loadTask();
         for(Task t: tasks){
