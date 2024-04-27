@@ -53,6 +53,44 @@ public class ProjectFactory<T> implements IDataFactory<T>{
         }
         return result;
     }
+    public List<T> loadByUID(String userId) {
+        ArrayList<T> result = new ArrayList<>();
+        String sql = "SELECT * FROM project WHERE userId='"+userId+"'";
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                String title = rs.getString(2);
+                String description = rs.getString(3);
+                String time_finish = rs.getString(4);
+                String in_status = rs.getString(5);
+                Project.STATUS status = null;
+                if(Objects.equals(in_status, "todo")){
+                    status = Project.STATUS.TODO;
+                }
+                else if(Objects.equals(in_status, "completed")){
+                    status = Project.STATUS.COMPLETED;
+                }else if(Objects.equals(in_status,"pending")){
+                    status = Project.STATUS.PENDING;
+                }
+                String manager = rs.getString(6);
+                String create_at = rs.getString(7);
+                String comment = rs.getString(8);
+                String tags = rs.getString(9);
+                String uid = rs.getString(10);
+
+                Project project = new Project(title,description,time_finish,status,manager,create_at,comment,tags,uid);
+                result.add((T) project);
+            }
+        }
+        catch (SQLException ex){
+            // handle any errors
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+        }
+        return result;
+    }
     @Override
     public void save(List<T> list_objs) {
         try {

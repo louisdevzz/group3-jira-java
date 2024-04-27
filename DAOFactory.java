@@ -4,14 +4,14 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
 
-public class DAOFactory{
+public class DAOFactory {
     public Connection conn;
     public DAOFactory(String mysql){
         Welcome wl = new Welcome();
         wl.setVisible(true);
-        wl.ProgressBar();
         try {
-            conn = DriverManager.getConnection(mysql);
+            wl.ProgressBar();
+            conn = DriverManager.getConnection(mysql,"louisdevzz","Louisdevzz1310");
             System.out.println("connect success!!");
             wl.setVisible(false);
         } catch (SQLException ex) {
@@ -27,6 +27,11 @@ public class DAOFactory{
     public <T> List<T> loadProject(){
         return new ProjectFactory(conn).load();
     }
+
+    public <T> List<T> loadProjectByUID(String uid){
+        return new ProjectFactory(conn).loadByUID(uid);
+    }
+
 
     public <T> void createUser(List<T> list_users){
         new UserFactory(conn).save(list_users);

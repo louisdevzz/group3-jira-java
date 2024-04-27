@@ -112,7 +112,7 @@ public class Welcome extends javax.swing.JFrame {
     public void ProgressBar(){
         try{
             for(int i= 0;i<100;i++){
-                Thread.sleep(200);
+                Thread.sleep(50);
                 jprogress.setValue(i);
                 if(i%2==0){
                     jpleasewait.setText("Please wait..");
@@ -131,5 +131,5 @@ public class Welcome extends javax.swing.JFrame {
     public javax.swing.JLabel jLabel3;
     public javax.swing.JLabel jpleasewait;
     public javax.swing.JProgressBar jprogress;
-    // End of variables declaration
+
 }
