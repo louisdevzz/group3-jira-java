@@ -41,6 +41,7 @@ public class CreateProject extends javax.swing.JFrame {
         fManager = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         ftags = new javax.swing.JTextField();
+        btnExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,7 +103,7 @@ public class CreateProject extends javax.swing.JFrame {
         jLabel9.setText("Status");
 
         fStatus.setFont(new java.awt.Font("Ubuntu", 0, 16)); // NOI18N
-        fStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Choose--","TODO", "PENDING", "COMPLETED" }));
+        fStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TODO", "PENDING", "COMPLETED" }));
 
         jLabel10.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
         jLabel10.setText("Name Manager");
@@ -113,6 +114,14 @@ public class CreateProject extends javax.swing.JFrame {
         jLabel11.setText("Tags");
 
         ftags.setFont(new java.awt.Font("Ubuntu", 0, 16)); // NOI18N
+
+        btnExit.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        btnExit.setText("Exit");
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -147,6 +156,8 @@ public class CreateProject extends javax.swing.JFrame {
                                                 .addGap(42, 42, 42))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(26, 26, 26)
                                                 .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(29, 29, 29)))
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -187,13 +198,15 @@ public class CreateProject extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(ftags, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnCreate)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(btnCreate)
+                                        .addComponent(btnExit))
                                 .addGap(43, 43, 43))
                         .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
-    }// </editor-fold>
+    }
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {
         Project.STATUS status = null;
@@ -209,15 +222,13 @@ public class CreateProject extends javax.swing.JFrame {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         String createdAt = df.format(new Date());
         management.createProject(nameProject.getText(),fdescription.getText(),fdate_finish.getText(),status,fManager.getText(),createdAt,"",ftags.getText(),uid);
-        Dashboard dashboard = new Dashboard();
-        dashboard.setVisible(true);
-        dashboard.setManagement(management);
         this.setVisible(false);
     }
 
-    /**
-     * @param args the command line arguments
-     */
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {
+        this.setVisible(false);
+    }
+
     public static void main(String args[]) {
         try{
             javax.swing.UIManager.setLookAndFeel(new FlatIntelliJLaf());
@@ -241,6 +252,7 @@ public class CreateProject extends javax.swing.JFrame {
 
     // Variables declaration - do not modify
     private javax.swing.JButton btnCreate;
+    private javax.swing.JButton btnExit;
     private javax.swing.JTextField fManager;
     private javax.swing.JComboBox<String> fStatus;
     private javax.swing.JTextArea fdescription;
