@@ -42,6 +42,7 @@ public class CreateProject extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         ftags = new javax.swing.JTextField();
         btnExit = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -123,6 +124,14 @@ public class CreateProject extends javax.swing.JFrame {
             }
         });
 
+        btnUpdate.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -132,7 +141,7 @@ public class CreateProject extends javax.swing.JFrame {
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGap(29, 29, 29)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
                                                         .addComponent(fManager)
                                                         .addComponent(ftags)
                                                         .addComponent(nameProject)
@@ -152,14 +161,15 @@ public class CreateProject extends javax.swing.JFrame {
                                                                         .addComponent(jLabel11))
                                                                 .addGap(0, 0, Short.MAX_VALUE))
                                                         .addComponent(jScrollPane1)
-                                                        .addComponent(fdate_finish))
-                                                .addGap(42, 42, 42))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                        .addComponent(fdate_finish)))
+                                        .addGroup(layout.createSequentialGroup()
                                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(26, 26, 26)
-                                                .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(29, 29, 29)))
+                                                .addGap(31, 31, 31)
+                                                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(42, 42, 42)
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
@@ -197,16 +207,17 @@ public class CreateProject extends javax.swing.JFrame {
                                 .addComponent(jLabel11)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(ftags, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(41, 41, 41)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(btnCreate)
-                                        .addComponent(btnExit))
-                                .addGap(43, 43, 43))
+                                        .addComponent(btnExit)
+                                        .addComponent(btnUpdate))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
-    }
+    }// </editor-fold>
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {
         Project.STATUS status = null;
@@ -223,6 +234,10 @@ public class CreateProject extends javax.swing.JFrame {
         String createdAt = df.format(new Date());
         management.createProject(1,nameProject.getText(),fdescription.getText(),fdate_finish.getText(),status,fManager.getText(),createdAt,"",ftags.getText(),uid);
         this.setVisible(false);
+    }
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
     }
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {
@@ -253,6 +268,7 @@ public class CreateProject extends javax.swing.JFrame {
     // Variables declaration - do not modify
     private javax.swing.JButton btnCreate;
     private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JTextField fManager;
     private javax.swing.JComboBox<String> fStatus;
     private javax.swing.JTextArea fdescription;
