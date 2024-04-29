@@ -59,7 +59,7 @@ public class Client{
                         System.out.print("Tags (...,...): ");
                         String tags = scanner.nextLine();
 
-                        management.createProject(title,description,timeFinish,status,manager,createdAt,comment,tags,userid);
+                        management.createProject(1,title,description,timeFinish,status,manager,createdAt,comment,tags,userid);
                         break;
                     }else{
                         System.out.println("Please login before create project!!");

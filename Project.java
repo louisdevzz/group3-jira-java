@@ -9,6 +9,7 @@ import java.util.Locale;
 
 public class Project {
     public enum STATUS {TODO,PENDING,COMPLETED}
+    private int pid;
     private String title;
     private String description;
     private String time_finish;
@@ -19,7 +20,8 @@ public class Project {
     private String tags;
     private String userId;
 
-    public Project(String title, String description, String time_finish, STATUS status, String manager, String create_at_string, String comment, String tags, String userId) {
+    public Project(int pid,String title, String description, String time_finish, STATUS status, String manager, String create_at_string, String comment, String tags, String userId) {
+        this.pid = pid;
         this.title = title;
         this.description = description;
         this.time_finish = time_finish;
@@ -45,6 +47,10 @@ public class Project {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getPid() {
+        return pid;
     }
 
     public String getTime_finish() {
