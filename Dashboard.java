@@ -568,8 +568,8 @@ public class Dashboard extends javax.swing.JFrame {
 
     }
     private void JCreateTaskActionPerformed(java.awt.event.ActionEvent evt) {
-
-
+        CreateTask createTask = new CreateTask();
+        createTask.setVisible(true);
     }
     private void btnCommentActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
