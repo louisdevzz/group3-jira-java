@@ -65,12 +65,12 @@ public class ProjectFactory<T> implements IDataFactory<T>{
                 String time_finish = rs.getString(4);
                 String in_status = rs.getString(5);
                 Project.STATUS status = null;
-                if(Objects.equals(in_status, "todo")){
+                if(Objects.equals(in_status, "TODO")){
                     status = Project.STATUS.TODO;
                 }
-                else if(Objects.equals(in_status, "completed")){
+                else if(Objects.equals(in_status, "COMPLETED")){
                     status = Project.STATUS.COMPLETED;
-                }else if(Objects.equals(in_status,"pending")){
+                }else if(Objects.equals(in_status,"PENDING")){
                     status = Project.STATUS.PENDING;
                 }
                 String manager = rs.getString(6);

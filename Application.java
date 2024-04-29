@@ -140,7 +140,6 @@ public class Application extends javax.swing.JFrame {
                     System.out.println("login successful!!");
                     List<Project> project = management.loadProjectByUID(u.getUid());
                     Notifications.getInstance().show(Notifications.Type.SUCCESS,"LOGIN SUCCESS!!");
-                    uid = u.getUid();
                     if(project.isEmpty()){
                         CreateProject createProject = new CreateProject();
                         createProject.setVisible(true);
@@ -151,8 +150,12 @@ public class Application extends javax.swing.JFrame {
                     }else{
                         Dashboard dashboard = new Dashboard();
                         dashboard.setManagement(management);
+                        dashboard.setName(u.getFull_name());
+                        dashboard.setUID(u.getUid());
+                        dashboard.loadProject(management);
                         dashboard.setVisible(true);
                         this.setVisible(false);
+                        break;
                     }
                 }else{
                     Notifications.getInstance().show(Notifications.Type.ERROR,"LOGIN FAILED!!");
@@ -221,7 +224,6 @@ public class Application extends javax.swing.JFrame {
     private javax.swing.JLabel juser;
     private javax.swing.JTextField password;
     private javax.swing.JTextField username;
-    public String uid;
 
 }
 
