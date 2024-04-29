@@ -22,6 +22,7 @@ public class ProjectFactory<T> implements IDataFactory<T>{
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM project");
             while (rs.next()) {
+                int pid = rs.getInt(1);
                 String title = rs.getString(2);
                 String description = rs.getString(3);
                 String time_finish = rs.getString(4);
@@ -41,7 +42,7 @@ public class ProjectFactory<T> implements IDataFactory<T>{
                 String tags = rs.getString(9);
                 String uid = rs.getString(10);
 
-                Project project = new Project(title,description,time_finish,status,manager,create_at,comment,tags,uid);
+                Project project = new Project(pid,title,description,time_finish,status,manager,create_at,comment,tags,uid);
                 result.add((T) project);
             }
         }
@@ -60,6 +61,7 @@ public class ProjectFactory<T> implements IDataFactory<T>{
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
+                int pid = rs.getInt(1);
                 String title = rs.getString(2);
                 String description = rs.getString(3);
                 String time_finish = rs.getString(4);
@@ -79,7 +81,7 @@ public class ProjectFactory<T> implements IDataFactory<T>{
                 String tags = rs.getString(9);
                 String uid = rs.getString(10);
 
-                Project project = new Project(title,description,time_finish,status,manager,create_at,comment,tags,uid);
+                Project project = new Project(pid,title,description,time_finish,status,manager,create_at,comment,tags,uid);
                 result.add((T) project);
             }
         }

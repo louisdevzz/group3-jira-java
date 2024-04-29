@@ -12,10 +12,10 @@ public class Management<T> {
         dao = new DAOFactory("jdbc:mysql://jira.czg8sceumunq.us-west-1.rds.amazonaws.com:3306/jira");
     }
     @SuppressWarnings("unchecked")
-    public void createProject(String title, String description, String time_finish, Project.STATUS status,
+    public void createProject(int pid,String title, String description, String time_finish, Project.STATUS status,
                               String manager, String create_at_string, String comment, String tags, String userId){
         List<T> projectList = new ArrayList<>();
-        Project project = new Project(title,description,time_finish,status,manager,create_at_string,comment,tags,userId);
+        Project project = new Project(pid,title,description,time_finish,status,manager,create_at_string,comment,tags,userId);
         projectList.add((T) project);
         dao.createProject(projectList);
         System.out.println("Create project successful!!!");
@@ -52,11 +52,17 @@ public class Management<T> {
         return projects;
     }
 
+
     public void loadTask(){
         List<Task> tasks = dao.loadTask();
         for(Task t: tasks){
             System.out.println(t.toString());
         }
+    }
+
+    public List<Task> loadTaskByPID(int pid){
+        List<Task> tasks = dao.loadTaskByPID(pid);
+        return tasks;
     }
 
     public List<User> userList(){

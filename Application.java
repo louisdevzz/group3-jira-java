@@ -153,6 +153,7 @@ public class Application extends javax.swing.JFrame {
                         dashboard.setName(u.getFull_name());
                         dashboard.setUID(u.getUid());
                         dashboard.loadProject(management);
+                        dashboard.loadTask(management);
                         dashboard.setVisible(true);
                         this.setVisible(false);
                         break;
@@ -182,7 +183,11 @@ public class Application extends javax.swing.JFrame {
                 Notifications.getInstance().show(Notifications.Type.SUCCESS,"CREATE SUCCESS!!");
                 Dashboard dashboard = new Dashboard();
                 dashboard.setVisible(true);
+                dashboard.setName(name);
+                dashboard.setUID(uid);
                 dashboard.setManagement(management);
+                dashboard.loadProject(management);
+                dashboard.loadTask(management);
                 this.setVisible(false);
             }catch (Exception e){
                 e.printStackTrace();

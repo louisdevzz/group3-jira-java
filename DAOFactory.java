@@ -48,5 +48,8 @@ public class DAOFactory {
     public <T> List<T> loadTask(){
         return new TaskFactory(conn).load();
     }
+    public <T> List<T> loadTaskByPID(int pID){
+        return new TaskFactory(conn).loadByPID(pID);
+    }
 
 }

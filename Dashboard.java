@@ -1,6 +1,7 @@
 package group1;
 
 import com.formdev.flatlaf.FlatIntelliJLaf;
+import com.sun.source.tree.Scope;
 import raven.toast.Notifications;
 
 import javax.swing.*;
@@ -36,10 +37,16 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        jLabelTest1 = new javax.swing.JLabel();
+        jLabelTest2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jPanel19 = new javax.swing.JPanel();
+        jPanelTest = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -47,6 +54,9 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel10 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        jPanel20 = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
@@ -54,6 +64,9 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel13 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
+        jPanel21 = new javax.swing.JPanel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
         jtitle = new javax.swing.JLabel();
@@ -102,48 +115,8 @@ public class Dashboard extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-
-        jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        GroupLayout jPanel1Layout = LayoutSidebar(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(20, 20, 20)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                .addComponent(jfullname1)
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(jfullname, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE))
-                                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                .addComponent(jLabel1)
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                .addComponent(btnCreate))))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(50, 50, 50)
-                                                .addComponent(jproject1)
-                                                .addGap(0, 106, Short.MAX_VALUE)))
-                                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jfullname)
-                                        .addComponent(jfullname1))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel1)
-                                        .addComponent(btnCreate))
-                                .addGap(18, 18, 18)
-                                .addComponent(jproject1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(60, 60, 60))
-        );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -186,51 +159,11 @@ public class Dashboard extends javax.swing.JFrame {
                                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        jLabel6.setFont(new java.awt.Font("Ubuntu", 0, 15)); // NOI18N
-        jLabel6.setText("name task");
+        createPanel(jPanel6);
+        //createPanel(jPanelTest);
 
-        jLabel7.setFont(new java.awt.Font("Ubuntu", 0, 15)); // NOI18N
-        jLabel7.setText("tags");
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-                jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGap(16, 16, 16)
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel6)
-                                        .addComponent(jLabel7))
-                                .addContainerGap(160, Short.MAX_VALUE))
-        );
-        jPanel6Layout.setVerticalGroup(
-                jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel7)
-                                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        GroupLayout jPanel5Layout = TODOLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-                jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addContainerGap())
-        );
-        jPanel5Layout.setVerticalGroup(
-                jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 294, Short.MAX_VALUE))
-        );
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -263,32 +196,8 @@ public class Dashboard extends javax.swing.JFrame {
                                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        jLabel10.setFont(new java.awt.Font("Ubuntu", 0, 15)); // NOI18N
-        jLabel10.setText("name task");
-
-        jLabel11.setFont(new java.awt.Font("Ubuntu", 0, 15)); // NOI18N
-        jLabel11.setText("tags");
-
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-                jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel10Layout.createSequentialGroup()
-                                .addGap(16, 16, 16)
-                                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel10)
-                                        .addComponent(jLabel11))
-                                .addContainerGap(160, Short.MAX_VALUE))
-        );
-        jPanel10Layout.setVerticalGroup(
-                jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel10Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel11)
-                                .addContainerGap())
-        );
+        createPanel1(jPanel10);
+        createPanel2(jPanel13);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -340,32 +249,6 @@ public class Dashboard extends javax.swing.JFrame {
                                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        jLabel14.setFont(new java.awt.Font("Ubuntu", 0, 15)); // NOI18N
-        jLabel14.setText("name task");
-
-        jLabel15.setFont(new java.awt.Font("Ubuntu", 0, 15)); // NOI18N
-        jLabel15.setText("tags");
-
-        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
-        jPanel13.setLayout(jPanel13Layout);
-        jPanel13Layout.setHorizontalGroup(
-                jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel13Layout.createSequentialGroup()
-                                .addGap(16, 16, 16)
-                                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel14)
-                                        .addComponent(jLabel15))
-                                .addContainerGap(160, Short.MAX_VALUE))
-        );
-        jPanel13Layout.setVerticalGroup(
-                jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel13Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel14)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel15)
-                                .addContainerGap())
-        );
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -685,14 +568,105 @@ public class Dashboard extends javax.swing.JFrame {
 
     }
     private void JCreateTaskActionPerformed(java.awt.event.ActionEvent evt) {
-        jproject2 = new JLabel();
-        jproject2.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
-        jproject2.setText("DONE");
+
 
     }
     private void btnCommentActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
+
+    public GroupLayout LayoutSidebar(JPanel jPanel){
+        GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
+        jPanelLayout.setHorizontalGroup(
+                jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelLayout.createSequentialGroup()
+                                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanelLayout.createSequentialGroup()
+                                                .addGap(20, 20, 20)
+                                                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addGroup(jPanelLayout.createSequentialGroup()
+                                                                .addComponent(jfullname1)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                .addComponent(jfullname, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                                                        )
+                                                        .addGroup(jPanelLayout.createSequentialGroup()
+                                                                .addComponent(jLabel1)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                .addComponent(btnCreate))))
+                                        .addGroup(jPanelLayout.createSequentialGroup()
+                                                .addGap(50, 50, 50)
+                                                .addComponent(jproject1)
+                                                .addGap(0, 106, Short.MAX_VALUE)))
+                                .addContainerGap())
+        );
+        jPanelLayout.setVerticalGroup(
+                jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelLayout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jfullname)
+                                        .addComponent(jfullname1))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel1)
+                                        .addComponent(btnCreate))
+                                .addGap(18, 18, 18)
+                                .addComponent(jproject1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(60, 60, 60))
+        );
+        return jPanelLayout;
+    }
+
+    private GroupLayout TaskLayout(JPanel jPanel,JLabel jLabelChildren1,JLabel jLabelChildren2){
+        GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
+        jPanelLayout.setHorizontalGroup(
+                jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelLayout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabelChildren1)
+                                        .addComponent(jLabelChildren2))
+                                .addContainerGap(160, Short.MAX_VALUE))
+        );
+        jPanelLayout.setVerticalGroup(
+                jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabelChildren1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabelChildren2)
+                                .addContainerGap())
+        );
+        return  jPanelLayout;
+    }
+
+    private GroupLayout TODOLayout(JPanel jPanel){
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel);
+        jPanel5Layout.setHorizontalGroup(
+                jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                )
+                                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+                jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 294, Short.MAX_VALUE))
+        );
+        return jPanel5Layout;
+    }
+
+
 
 
     public static void main(String args[]) {
@@ -717,9 +691,63 @@ public class Dashboard extends javax.swing.JFrame {
             jtitle.setText(p.getTitle());
             jStatus.setText(p.getStatus().name());
             jDescription.setText(p.getDescription());
+            setPid(p.getPid());
         }
     }
+    public void loadTask(Management management){
+        List<Task> taskList = management.loadTaskByPID(pid);
+        int length = taskList.size();
+        String size = Integer.toString(length);
+        jLabel5.setText(size);
+        for(Task task: taskList){
+            if(task.getStatus() == Task.STATUS.TODO){
+                jTask.setText(task.getTopic());
+                jTags.setText(task.getTags());
+            }else if(task.getStatus() == Task.STATUS.PENDING){
+                jTask1.setText(task.getTopic());
+                jTags1.setText(task.getTags());
+            }else if(task.getStatus() == Task.STATUS.COMPLETED){
+                jTask2.setText(task.getTopic());
+                jTags2.setText(task.getTags());
+            }
+        }
+    }
+    public void createPanel(JPanel panel){
+        jTask = createLabel("");
+        jTags = createLabel("");
+        GroupLayout groupLayout = TaskLayout(panel,jTask,jTags);
+        panel.setLayout(groupLayout);
+    }
+    public void createPanel1(JPanel panel){
+        jTask1 = createLabel("");
+        jTags1 = createLabel("");
+        GroupLayout groupLayout = TaskLayout(panel,jTask1,jTags1);
+        panel.setLayout(groupLayout);
+    }
+    public void createPanel2(JPanel panel){
+        jTask2 = createLabel("");
+        jTags2 = createLabel("");
+        GroupLayout groupLayout = TaskLayout(panel,jTask2,jTags2);
+        panel.setLayout(groupLayout);
+    }
+
+
+    public JLabel createLabel(String str){
+        JLabel label = new JLabel();
+        label.setFont(new java.awt.Font("Ubuntu", 0, 15)); // NOI18N
+        label.setText(str);
+        return label;
+    }
+    public void setPid(int pid){
+        this.pid = pid;
+    }
     // Variables declaration - do not modify
+    private javax.swing.JLabel jTask;
+    private javax.swing.JLabel jTags;
+    private javax.swing.JLabel jTask1;
+    private javax.swing.JLabel jTags1;
+    private javax.swing.JLabel jTask2;
+    private javax.swing.JLabel jTags2;
     private javax.swing.JButton btnComment;
     private javax.swing.JButton btnCreate;
     private javax.swing.JButton btnCreate1;
@@ -727,13 +755,21 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton jCreateTask;
     private javax.swing.JTextArea jDescription;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelTest1;
+    private javax.swing.JLabel jLabelTest2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -753,7 +789,11 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanelTest;
+    private javax.swing.JPanel jPanel20;
+    private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -768,10 +808,9 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jfullname;
     private javax.swing.JLabel jfullname1;
     private javax.swing.JLabel jproject1;
-    private javax.swing.JLabel jproject2;
     private javax.swing.JLabel jtitle;
     private Management management;
-    private GroupLayout jPanel1Layout;
     private String uid;
+    private int pid;
     // End of variables declaration
 }

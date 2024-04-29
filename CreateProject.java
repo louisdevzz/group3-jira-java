@@ -221,7 +221,7 @@ public class CreateProject extends javax.swing.JFrame {
         }
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         String createdAt = df.format(new Date());
-        management.createProject(nameProject.getText(),fdescription.getText(),fdate_finish.getText(),status,fManager.getText(),createdAt,"",ftags.getText(),uid);
+        management.createProject(1,nameProject.getText(),fdescription.getText(),fdate_finish.getText(),status,fManager.getText(),createdAt,"",ftags.getText(),uid);
         this.setVisible(false);
     }
 

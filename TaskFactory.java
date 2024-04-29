@@ -54,6 +54,45 @@ public class TaskFactory<T> implements IDataFactory<T>{
         }
         return result;
     }
+
+    public List<T> loadByPID(int pID) {
+        ArrayList<T> result = new ArrayList<>();
+        String sql = "SELECT * FROM task WHERE pid='"+Integer.toString(pID)+"'";
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                String pid = rs.getString(2);
+                String topic = rs.getString(3);
+                String from_date = rs.getString(4);
+                String to_date = rs.getString(5);
+                String description = rs.getString(6);
+                String assignment = rs.getString(7);
+                String create_at = rs.getString(8);
+                String in_status = rs.getString(9);
+                String comment = rs.getString(10);
+                String tags = rs.getString(11);
+                Task.STATUS status = null;
+                if(Objects.equals(in_status, "TODO")){
+                    status = Task.STATUS.TODO;
+                }
+                else if(Objects.equals(in_status, "COMPLETED")){
+                    status = Task.STATUS.COMPLETED;
+                }else if(Objects.equals(in_status,"PENDING")){
+                    status = Task.STATUS.PENDING;
+                }
+                Task task = new Task(pid,topic,from_date,to_date,description,assignment,create_at,status,comment,tags);
+                result.add((T) task);
+            }
+        }
+        catch (SQLException ex){
+            // handle any errors
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+        }
+        return result;
+    }
     @Override
     public void save(List<T> list_tasks) {
         try {
