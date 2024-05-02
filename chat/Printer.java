@@ -1,3 +1,4 @@
+package group1.chat;
 import java.io.BufferedReader;
 import java.io.IOException;
 
