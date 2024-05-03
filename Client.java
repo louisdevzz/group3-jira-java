@@ -105,7 +105,7 @@ public class Client{
                         System.out.print("Tags (...,...): ");
                         String tags = scanner.nextLine();
 
-                        management.createTask("3",topic,fromDate,toDate,description,assignment,created_at_task,status,comment,tags);
+                        management.createTask(3,topic,fromDate,toDate,description,assignment,created_at_task,status,comment,tags);
                         break;
                     }
                 case "1":

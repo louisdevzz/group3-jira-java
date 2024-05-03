@@ -2,6 +2,11 @@ package group1;
 
 import raven.toast.Notifications;
 import com.formdev.flatlaf.FlatIntelliJLaf;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Objects;
+
 public class CreateTask extends javax.swing.JFrame {
 
     /**
@@ -10,6 +15,7 @@ public class CreateTask extends javax.swing.JFrame {
     public CreateTask() {
         initComponents();
         setLocationRelativeTo(null);
+        Notifications.getInstance().setJFrame(this);
     }
 
     /**
@@ -224,12 +230,42 @@ public class CreateTask extends javax.swing.JFrame {
     }
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        String topic = jTopic.getText();
+        String fromDate = jFromDate.getText();
+        String toDate = jToDate.getText();
+        String description = jDescription.getText();
+        String assignment = jAssignment.getText();
+        String in_status =(String) jStatus.getSelectedItem();
+        String tags = jTags.getText();
+
+        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+        String created_at_task = ft.format(new Date());
+
+        Task.STATUS status = null;
+        if(Objects.equals(in_status, "TODO")){
+            status = Task.STATUS.TODO;
+        }
+        else if(Objects.equals(in_status, "COMPLETED")){
+            status = Task.STATUS.COMPLETED;
+        }else if(Objects.equals(in_status,"PENDING")){
+            status = Task.STATUS.PENDING;
+        }
+        try{
+            management.createTask(pid,topic,fromDate,toDate,description,assignment,created_at_task,status,"",tags);
+            Notifications.getInstance().show(Notifications.Type.SUCCESS,"CREATE TASK SUCCESS!");
+        }catch (Exception e){
+            e.printStackTrace();
+            Notifications.getInstance().show(Notifications.Type.ERROR,"CREATE TASK FAILED!");
+        }
+
     }
 
-    /**
-     * @param args the command line arguments
-     */
+    public void setManagement(Management management){
+        this.management = management;
+    }
+    public void setPid(int pid){
+        this.pid = pid;
+    }
     public static void main(String args[]) {
         try{
             javax.swing.UIManager.setLookAndFeel(new FlatIntelliJLaf());
@@ -264,5 +300,7 @@ public class CreateTask extends javax.swing.JFrame {
     private javax.swing.JTextField jTags;
     private javax.swing.JTextField jToDate;
     private javax.swing.JTextField jTopic;
+    private Management management;
+    private int pid;
     // End of variables declaration
 }

@@ -8,7 +8,7 @@ import java.util.Locale;
 
 public class Task {
     public enum STATUS{TODO,PENDING,COMPLETED}
-    private String pid;
+    private int pid;
     private String topic;
     private String from_date;
     private String to_date;
@@ -19,7 +19,7 @@ public class Task {
     private String comment;
     private String tags;
 
-    public Task(String pid, String topic, String from_date, String to_date, String description, String assignment, String create_at, STATUS status, String comment, String tags) {
+    public Task(int pid, String topic, String from_date, String to_date, String description, String assignment, String create_at, STATUS status, String comment, String tags) {
         this.pid = pid;
         this.topic = topic;
         this.from_date = from_date;
@@ -32,7 +32,7 @@ public class Task {
         this.tags = tags;
     }
 
-    public String getPid() {
+    public int getPid() {
         return pid;
     }
 

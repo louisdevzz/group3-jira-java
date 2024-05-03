@@ -86,7 +86,7 @@ public class Dashboard extends javax.swing.JFrame {
         jCreateTask = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1370, 720));
+        setPreferredSize(new java.awt.Dimension(1470, 780));
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 20)); // NOI18N
         jLabel1.setText("Project");
@@ -160,6 +160,7 @@ public class Dashboard extends javax.swing.JFrame {
         );
 
         createPanel(jPanel6);
+
         //createPanel(jPanelTest);
 
         GroupLayout jPanel5Layout = TODOLayout(jPanel5);
@@ -569,6 +570,8 @@ public class Dashboard extends javax.swing.JFrame {
     }
     private void JCreateTaskActionPerformed(java.awt.event.ActionEvent evt) {
         CreateTask createTask = new CreateTask();
+        createTask.setManagement(management);
+        createTask.setPid(pid);
         createTask.setVisible(true);
     }
     private void btnCommentActionPerformed(java.awt.event.ActionEvent evt) {
@@ -696,21 +699,34 @@ public class Dashboard extends javax.swing.JFrame {
     }
     public void loadTask(Management management){
         List<Task> taskList = management.loadTaskByPID(pid);
-        int length = taskList.size();
-        String size = Integer.toString(length);
-        jLabel5.setText(size);
+        List<Task> taskTODO = taskList.stream()
+                .filter(t -> t.getStatus() == Task.STATUS.TODO).toList();
+        List<Task> taskTCOMPLETED = taskList.stream()
+                .filter(t -> t.getStatus() == Task.STATUS.COMPLETED).toList();
+        List<Task> taskPENDING = taskList.stream()
+                .filter(t -> t.getStatus() == Task.STATUS.PENDING).toList();
         for(Task task: taskList){
             if(task.getStatus() == Task.STATUS.TODO){
-                jTask.setText(task.getTopic());
-                jTags.setText(task.getTags());
+                int length = taskTODO.size();
+                String size = Integer.toString(length);
+                jLabel5.setText(size);
+                jTask.setText("Task: "+task.getTopic());
+                jTags.setText("Tags: "+task.getTags());
             }else if(task.getStatus() == Task.STATUS.PENDING){
-                jTask1.setText(task.getTopic());
-                jTags1.setText(task.getTags());
+                int length = taskPENDING.size();
+                String size = Integer.toString(length);
+                jLabel9.setText(size);
+                jTask1.setText("Task: "+task.getTopic());
+                jTags1.setText("Tags: "+task.getTags());
             }else if(task.getStatus() == Task.STATUS.COMPLETED){
-                jTask2.setText(task.getTopic());
-                jTags2.setText(task.getTags());
+                int length = taskTCOMPLETED.size();
+                String size = Integer.toString(length);
+                jLabel13.setText(size);
+                jTask2.setText("Task: "+task.getTopic());
+                jTags2.setText("Tags: "+task.getTags());
             }
         }
+
     }
     public void createPanel(JPanel panel){
         jTask = createLabel("");
