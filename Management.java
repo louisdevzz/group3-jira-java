@@ -21,7 +21,7 @@ public class Management<T> {
         System.out.println("Create project successful!!!");
     }
 
-    public void createTask(String pid, String topic, String from_date, String to_date, String description,
+    public void createTask(int pid, String topic, String from_date, String to_date, String description,
                            String assignment, String create_at, Task.STATUS status, String comment, String tags){
         List<T> taskList = new ArrayList<>();
         Task task = new Task(pid,topic,from_date, to_date, description, assignment, create_at,  status, comment, tags);

@@ -23,7 +23,7 @@ public class TaskFactory<T> implements IDataFactory<T>{
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM task");
             while (rs.next()) {
-                String pid = rs.getString(2);
+                int pid = rs.getInt(2);
                 String topic = rs.getString(3);
                 String from_date = rs.getString(4);
                 String to_date = rs.getString(5);
@@ -62,7 +62,7 @@ public class TaskFactory<T> implements IDataFactory<T>{
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
-                String pid = rs.getString(2);
+                int pid = rs.getInt(2);
                 String topic = rs.getString(3);
                 String from_date = rs.getString(4);
                 String to_date = rs.getString(5);
