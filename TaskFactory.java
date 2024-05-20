@@ -100,7 +100,7 @@ public class TaskFactory<T> implements IDataFactory<T>{
             String sql ="";
             for(T ts: list_tasks){
                 Task t = ts instanceof Task ? ((Task) ts) : null;
-                sql+="INSERT INTO task (pid,topic,from_date,to_date,description,assignment,create_at,status,comment,tags) VALUES ('"+t.getPid()+"','"+t.getTopic()+"','"+t.getFrom_date()+"','"+t.getTo_date()+"','"+t.getDescription()+"','"+t.getAssignment()+"','"+t.getCreate_at()+"','"+t.getStatus()+"','"+t.getComment()+"','"+t.getTags()+"')";
+                sql+="INSERT INTO task (pid,topic,from_date,to_date,description,assignment,create_at,status,comment,tags) VALUES ('"+t.getPid()+"','"+t.getTopic()+"','"+t.getFrom_dateFormat()+"','"+t.getTo_dateFormat()+"','"+t.getDescription()+"','"+t.getAssignment()+"','"+t.getCreate_at()+"','"+t.getStatus()+"','"+t.getComment()+"','"+t.getTags()+"')";
             }
             stmt.execute(sql);
         } catch (SQLException e) {

@@ -43,7 +43,7 @@ public class Task {
     public String getFrom_date() {
         String rs_from_date = null;
         try{
-            DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+            DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
             Date finish = format.parse(from_date);
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             rs_from_date = df.format(finish);
@@ -54,6 +54,32 @@ public class Task {
     }
 
     public String getTo_date() {
+        String rs_to_date = null;
+        try{
+            DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+            Date finish = format.parse(to_date);
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            rs_to_date = df.format(finish);
+        }catch (ParseException e){
+            System.out.println("Invalid date format. Please use yyyy-MM-dd.");
+        }
+        return rs_to_date;
+    }
+
+    public String getFrom_dateFormat() {
+        String rs_from_date = null;
+        try{
+            DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+            Date finish = format.parse(from_date);
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            rs_from_date = df.format(finish);
+        }catch (ParseException e){
+            System.out.println("Invalid date format. Please use yyyy-MM-dd.");
+        }
+        return rs_from_date;
+    }
+
+    public String getTo_dateFormat() {
         String rs_to_date = null;
         try{
             DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);

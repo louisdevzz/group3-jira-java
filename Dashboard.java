@@ -8,11 +8,15 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Dashboard extends javax.swing.JFrame {
 
+    List<Task> taskList_todo;
+    List<Task> taskList_pending;
+    List<Task> taskList_complete;
     /**
      * Creates new form Dashboard
      */
@@ -20,6 +24,9 @@ public class Dashboard extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         Notifications.getInstance().setJFrame(this);
+        taskList_todo = new ArrayList<>();
+        taskList_complete = new ArrayList<>();
+        taskList_pending = new ArrayList<>();
     }
 
 
@@ -61,6 +68,7 @@ public class Dashboard extends javax.swing.JFrame {
         btnComment = new javax.swing.JButton();
         btnCreate1 = new javax.swing.JButton();
         jCreateTask = new javax.swing.JButton();
+        jLoadTask = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1390, 720));
@@ -212,7 +220,11 @@ public class Dashboard extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-
+        jTablePD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTablePDMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(jTablePD);
         if (jTablePD.getColumnModel().getColumnCount() > 0) {
             jTablePD.getColumnModel().getColumn(0).setResizable(false);
@@ -433,6 +445,19 @@ public class Dashboard extends javax.swing.JFrame {
 
         jCreateTask.setFont(new java.awt.Font("Ubuntu", 1, 17)); // NOI18N
         jCreateTask.setText("Create task");
+        jCreateTask.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCreateTaskActionPerformed(evt);
+            }
+        });
+
+        jLoadTask.setFont(new java.awt.Font("Ubuntu", 1, 17)); // NOI18N
+        jLoadTask.setText("Load task");
+        jLoadTask.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jLoadTaskActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -447,6 +472,8 @@ public class Dashboard extends javax.swing.JFrame {
                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                                 .addComponent(jNameProject)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jLoadTask)
+                                                .addGap(26, 26, 26)
                                                 .addComponent(jCreateTask)
                                                 .addGap(18, 18, 18))))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -461,7 +488,8 @@ public class Dashboard extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jNameProject)
-                                        .addComponent(jCreateTask))
+                                        .addComponent(jCreateTask)
+                                        .addComponent(jLoadTask))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 624, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())
@@ -510,16 +538,21 @@ public class Dashboard extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
 
     }
-    private void JCreateTaskActionPerformed(java.awt.event.ActionEvent evt) {
-        CreateTask createTask = new CreateTask();
-        createTask.setManagement(management);
-        createTask.setPid(pid);
-        createTask.setVisible(true);
-    }
+
     private void btnCommentActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
 
+    private void jLoadTaskActionPerformed(java.awt.event.ActionEvent evt) {
+        management.loadTask();
+    }
+
+    private void jCreateTaskActionPerformed(java.awt.event.ActionEvent evt) {
+        CreateTask createTask = new CreateTask();
+        createTask.setPid(pid);
+        createTask.setManagement(management);
+        createTask.setVisible(true);
+    }
 
     public static void main(String args[]) {
         try{
@@ -527,19 +560,26 @@ public class Dashboard extends javax.swing.JFrame {
         }catch(Exception e){
             e.printStackTrace();
         }
-        //</editor-fold>
-
-        /* Create and display the form */
         Dashboard dashboard = new Dashboard();
         dashboard.setVisible(true);
 
     }
+    private void jTablePDMouseClicked(java.awt.event.MouseEvent evt) {
+        // TODO add your handling code here:
+    }
+    private void jTableCPMouseClicked(java.awt.event.MouseEvent evt) {
+        // TODO add your handling code here:
+    }
     private void jTableData1MouseClicked(java.awt.event.MouseEvent evt) {
-        int row = jTableData1.getSelectedRow();
-        int col = jTableData1.getSelectedColumn();
-        DefaultTableModel model = (DefaultTableModel) jTableData1.getModel();
-        Object value = model.getValueAt(row,col);
-        System.out.println(value);
+        if(evt.getClickCount() !=2){
+            int row = jTableData1.getSelectedRow();
+            Task tasks = taskList_todo.get(row);
+            TaskList taskList = new TaskList();
+            taskList.setTasklist(tasks);
+            taskList.loadTask();
+            taskList.setVisible(true);
+        }
+        //System.out.println(taskList_todo.get(row));
     }
     public void loadProject(Management management){
         List<Project> projectLists = management.loadProjectByUID(uid);
@@ -560,14 +600,17 @@ public class Dashboard extends javax.swing.JFrame {
                 DefaultTableModel model = (DefaultTableModel) jTableData1.getModel();
                 String[] topicTodo = {t.getTopic()};
                 model.addRow(topicTodo);
+                taskList_todo.add(t);
             }else if(t.getStatus() == Task.STATUS.PENDING){
                 DefaultTableModel model = (DefaultTableModel) jTablePD.getModel();
                 String[] topicPending = {t.getTopic()};
                 model.addRow(topicPending);
+                taskList_pending.add(t);
             }else if(t.getStatus() == Task.STATUS.COMPLETED){
                 DefaultTableModel model = (DefaultTableModel) jTableCP.getModel();
                 String[] topicCP = {t.getTopic()};
                 model.addRow(topicCP);
+                taskList_complete.add(t);
             }
         }
     }
@@ -612,5 +655,6 @@ public class Dashboard extends javax.swing.JFrame {
     private Management management;
     private String uid;
     private int pid;
+    private javax.swing.JButton jLoadTask;
     // End of variables declaration
 }
